@@ -34,6 +34,11 @@ if(BUILD_EXAMPLES)
   endforeach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
 endif()
 
+add_executable(demo ${CMAKE_CURRENT_SOURCE_DIR}/demo/main.cpp)
+target_link_libraries(demo print)
+install(TARGETS demo RUNTIME DESTINATION bin)
+
+
 install(TARGETS print
     EXPORT print-config
     ARCHIVE DESTINATION lib
@@ -51,5 +56,10 @@ if(BUILD_TESTS)
   target_link_libraries(check ${PROJECT_NAME} gtest_main)
   add_test(NAME check COMMAND check)
 endif()
+
+add_executable(demo ${CMAKE_CURRENT_SOURCE_DIR}/demo/main.cpp)
+target_link_libraries(demo print)
+install(TARGETS demo RUNTIME DESTINATION bin)
+
 
 include(CPackConfig.cmake)
